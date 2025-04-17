@@ -28,11 +28,11 @@ RUN mkdir -p /home/hero/.ssh && \
     chmod 600 /home/hero/.ssh/authorized_keys && \
     chown -R hero:hero /home/hero/.ssh
 
-# Switch to hero user
-USER hero
+# Switch to root user (needed to start ssh service properly)
+USER root
 
 # Expose SSH port
 EXPOSE 22
 
-# Start SSH server
+# Start SSH server and keep container running
 CMD ["/usr/sbin/sshd", "-D"]
