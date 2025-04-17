@@ -18,4 +18,8 @@ services:
 
 networks:
   bridge:
+<<<<<<< HEAD
     external: true  # Use the default Docker bridge network
+=======
+    external: true  # Use the default Docker bridge network
+>>>>>>> 810eb6a (updated files)

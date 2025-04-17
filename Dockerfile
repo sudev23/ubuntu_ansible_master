@@ -32,4 +32,8 @@ USER hero
 EXPOSE 22
 
 # Start SSH service and keep the container running
+<<<<<<< HEAD
 CMD ["/usr/sbin/sshd", "-D"]
+=======
+CMD ["/usr/sbin/sshd", "-D"]
+>>>>>>> 810eb6a (updated files)
