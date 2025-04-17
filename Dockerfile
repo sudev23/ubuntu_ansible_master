@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     sudo \
     && rm -rf /var/lib/apt/lists/*
 
-# Create a new user 'hero' and set password (optional, for password-based login)
+# Create a new user 'hero' and set password
 RUN useradd -m hero && \
     echo "hero:hero123" | chpasswd && \
     adduser hero sudo
@@ -24,6 +24,9 @@ RUN mkdir -p /home/hero/.ssh && \
     touch /home/hero/.ssh/authorized_keys && \
     chmod 600 /home/hero/.ssh/authorized_keys && \
     chown -R hero:hero /home/hero/.ssh
+
+# Change the default user to 'hero'
+USER hero
 
 # Expose port 22 for SSH access
 EXPOSE 22
