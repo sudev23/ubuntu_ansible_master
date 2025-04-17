@@ -13,3 +13,9 @@ services:
       - MY_ENV=production
     stdin_open: true  # Keep STDIN open for interactive shell
     tty: true         # Allocate pseudo-TTY
+    networks:
+      - jenkins_bridge  # Attach to your existing Docker network
+
+networks:
+  jenkins_bridge:
+    external: true  # Tells Docker Compose to use the existing network
