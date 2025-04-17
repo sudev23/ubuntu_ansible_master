@@ -10,6 +10,9 @@ RUN apt-get update && apt-get install -y \
     sudo \
     && rm -rf /var/lib/apt/lists/*
 
+# Generate SSH host keys (Required for SSH server to run)
+RUN ssh-keygen -A
+
 # Create user 'hero' and set password
 RUN useradd -m hero && \
     echo "hero:hero123" | chpasswd && \
