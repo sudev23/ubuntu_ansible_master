@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  ubuntu-container:
+    build: .  # Assumes Dockerfile is in the same directory
+    container_name: ubuntu-ssh-id-node
+    image: ubuntu-ssh-id-node-image:latest  # Specify the build name and tag
+    ports:
+      - "2222:22"  # Map host port 2222 to container SSH port 22
+    volumes:
+      - /Users/sudevkumarmishra/Documents/devops/ubuntu_data:/data  # Map host folder to container
+    environment:
+      - MY_ENV=production
+    stdin_open: true  # Keep STDIN open for interactive shell
+    tty: true         # Allocate pseudo-TTY
+    networks:
+      - bridge  # Connect the container to the bridge network
+
+networks:
+  bridge:
+    external: true  # Use the default Docker bridge network
