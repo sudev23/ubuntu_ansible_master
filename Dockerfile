@@ -4,11 +4,22 @@ FROM ubuntu:latest
 # Set environment variables to avoid prompts during installation
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install SSH server and necessary packages
+# Install SSH server, sudo, Python, Ansible dependencies, ping, and ifconfig
 RUN apt-get update && apt-get install -y \
     openssh-server \
     sudo \
+    python3 \
+    python3-pip \
+    software-properties-common \
+    iputils-ping \
+    net-tools \
     && rm -rf /var/lib/apt/lists/*
+
+# Install Ansible via apt
+RUN add-apt-repository --yes --update ppa:ansible/ansible && \
+    apt-get update && \
+    apt-get install -y ansible && \
+    rm -rf /var/lib/apt/lists/*
 
 # Generate SSH host keys (Required for SSH server to run)
 RUN ssh-keygen -A

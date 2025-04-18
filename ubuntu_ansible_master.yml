@@ -1,12 +1,12 @@
 version: '3.8'
 
 services:
-  ubuntu-container:
+  ansible-master:
     build: .  # Assumes Dockerfile is in the same directory
-    container_name: ubuntu-ssh-id-node
-    image: ubuntu-ssh-id-node-image:latest  # Specify the build name and tag
+    container_name: ubuntu-ansible-master-node
+    image: ubuntu-ansible-master-node-image:latest  # Specify the build name and tag
     ports:
-      - "2222:22"  # Map host port 2222 to container SSH port 22
+      - "2223:22"  # Map host port 2223 to container SSH port 22
     volumes:
       - /Users/sudevkumarmishra/Documents/devops/ubuntu_data:/data  # Map host folder to container
     environment:
@@ -15,6 +15,11 @@ services:
     tty: true         # Allocate pseudo-TTY
     networks:
       - jenkins_bridge  # Attach to your existing Docker network
+    healthcheck:
+      test: ["CMD", "ssh", "-o", "BatchMode=yes", "localhost", "exit"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
 networks:
   jenkins_bridge:
