@@ -7,6 +7,7 @@ services:
     image: ubuntu-ansible-master-node-image:latest  # Specify the build name and tag
     ports:
       - "2223:22"  # Map host port 2223 to container SSH port 22
+      - "8081:80"
     volumes:
       - /Users/sudevkumarmishra/Documents/devops/ubuntu_data:/data  # Map host folder to container
     environment:
